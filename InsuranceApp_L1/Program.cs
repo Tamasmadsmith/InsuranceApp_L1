@@ -147,7 +147,13 @@ namespace InsuranceApp_L1
                 Console.Clear();
             }
 
-            Console.WriteLine($"${totalInsuranceCost}");
+            Console.WriteLine($"Total insurance cost:\n${totalInsuranceCost}");
+
+            Console.WriteLine("\nThankyou!");
+
+            Console.ReadKey();
+
+            Console.Clear();
         }
     }
 }
