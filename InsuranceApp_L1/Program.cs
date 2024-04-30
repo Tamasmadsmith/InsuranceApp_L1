@@ -150,10 +150,6 @@ namespace InsuranceApp_L1
             Console.WriteLine($"Total insurance cost:\n${totalInsuranceCost}");
 
             Console.WriteLine("\nThankyou!");
-
-            Console.ReadKey();
-
-            Console.Clear();
         }
     }
 }
