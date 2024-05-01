@@ -11,17 +11,21 @@ namespace InsuranceApp_L1
         //Methods and Functions
         static void OneDevice()
         {
+            //Initialise list
             List<string> catagory = new List<string>() { "1. Computer", "2. Tablet", "3. Other" };
 
             //Collect information
             string deviceName = CheckNotBlank("Enter the device name: \n");
 
+            //Get num of devices
             Console.WriteLine("Enter the number of devices: \n");
             float deviceAmount = (float)Convert.ToDouble(CheckInt(1, 99999));
 
+            //Get device cost
             Console.WriteLine("Enter the device cost for 1 device: \n");
             float deviceCost = (float)Convert.ToDouble(CheckInt(1, 99999));
 
+            //Get the catagory
             Console.WriteLine("Choose the catagory of the device:");
             for (int index = 0; index < catagory.Count; index++)
             {
@@ -30,9 +34,11 @@ namespace InsuranceApp_L1
 
             Console.WriteLine(" ");
 
+            //Store input
             int deviceCatagory = CheckInt(1, catagory.Count);
             //Stop collecting information
 
+            //Check if user gets the discount and calculate the summary
             if (deviceAmount > 5)
             {
                 float insuranceCost = (5 * deviceCost) + (((deviceAmount - 5) * deviceCost) * .9f);
@@ -49,7 +55,8 @@ namespace InsuranceApp_L1
                               $"Total cost for {deviceAmount} x {deviceName} devices is = ${insuranceCost}");
                 totalInsuranceCost += insuranceCost;
             }
-            
+
+            //Show the depreciation
             Console.WriteLine("Month: | Value loss:");
 
             List<float> valueLoss = new List<float>() { deviceCost };
@@ -60,12 +67,14 @@ namespace InsuranceApp_L1
                 Console.WriteLine($"{month}      ${Math.Round(valueLoss[valueLoss.Count - 1], 2)}");
             }
 
+            //Show the catagory
             Console.WriteLine($"Catagory: {catagory[deviceCatagory-1]}");
         }
         static string CheckProceed()
         {
             while (true)
             {
+                //Ask if the want to add another device or quit
                 Console.WriteLine("Press <ENTER> to add another device or type 'X' to exit");
                 string checkProceed = Console.ReadLine();
 
@@ -76,11 +85,13 @@ namespace InsuranceApp_L1
                     return checkProceed;
                 }
 
+                //Display error message
                 DisplayErrorMessage("Error: Invalid choice");
             }
         }
         static void DisplayErrorMessage(string error)
         {
+            //Display error message
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(error);
             Console.ForegroundColor = ConsoleColor.White;
@@ -91,17 +102,21 @@ namespace InsuranceApp_L1
             {
                 try
                 {
+                    //Convert input to int
                     int userInt = Convert.ToInt32(Console.ReadLine());
-
+                    
+                    //Check if input in between min and max
                     if (userInt >= min && userInt <= max)
                     {
                         return userInt;
                     }
 
+                    //Display error message
                     DisplayErrorMessage($"ERROR: You MUST enter an integer between {min} and {max}.");
                 }
                 catch
                 {
+                    //Display error message
                     DisplayErrorMessage($"ERROR: You MUST enter an integer between {min} and {max}.");
                 }
             }
@@ -112,6 +127,7 @@ namespace InsuranceApp_L1
 
             while (true)
             {
+                //Ask the question
                 Console.WriteLine(question);
 
                 input = Console.ReadLine();
@@ -120,6 +136,7 @@ namespace InsuranceApp_L1
                 {
                     return input;
                 }
+                //Display the error message
                 DisplayErrorMessage("Error: You must enter an input");
             }
         }
@@ -127,6 +144,7 @@ namespace InsuranceApp_L1
         //Main or when run...
         static void Main(string[] args)
         {
+            //Display app title
             Console.WriteLine(
                         "  _____                                                                           \n" +
                         " |_   _|                                              /\\                         \n" +
@@ -140,14 +158,17 @@ namespace InsuranceApp_L1
             string proceed = "";
             while (proceed.Equals(""))
             {
+                //Call OneDevice
                 OneDevice();
 
+                //Check proceed?
                 proceed = CheckProceed();
 
                 Console.Clear();
             }
 
-            Console.WriteLine($"Total insurance cost:\n${totalInsuranceCost}");
+            //Display total insurance cost
+            Console.WriteLine($"Total insurance cost:\n${Math.Round(totalInsuranceCost, 2)}");
 
             Console.WriteLine("\nThankyou!");
         }
