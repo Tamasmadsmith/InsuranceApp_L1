@@ -13,6 +13,7 @@ namespace InsuranceApp_L1
         {
             //Initialise list
             List<string> catagory = new List<string>() { "1. Computer", "2. Tablet", "3. Other" };
+            catagory.AsReadOnly();
 
             //Collect information
             string deviceName = CheckNotBlank("Enter the device name: \n");
@@ -64,7 +65,7 @@ namespace InsuranceApp_L1
             for (int month = 1; month < 7; month++)
             {
                 valueLoss.Add((float)Convert.ToDouble(valueLoss[month -1] * 0.95));
-                Console.WriteLine($"{month}      ${Math.Round(valueLoss[valueLoss.Count - 1], 2)}");
+                Console.WriteLine($"{month}         ${Math.Round(valueLoss[valueLoss.Count - 1], 2)}");
             }
 
             //Show the catagory
