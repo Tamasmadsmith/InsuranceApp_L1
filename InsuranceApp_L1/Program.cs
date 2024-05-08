@@ -12,8 +12,8 @@ namespace InsuranceApp_L1
         static void OneDevice()
         {
             //Initialise list
-            List<string> catagory = new List<string>() { "1. Computer", "2. Tablet", "3. Other" };
-            catagory.AsReadOnly();
+            List<string> Catagory = new List<string>() { "1. Computer", "2. Tablet", "3. Other" };
+            Catagory.AsReadOnly();
 
             //Collect information
             string deviceName = CheckNotBlank("Enter the device name: \n");
@@ -28,15 +28,15 @@ namespace InsuranceApp_L1
 
             //Get the catagory
             Console.WriteLine("Choose the catagory of the device:");
-            for (int index = 0; index < catagory.Count; index++)
+            for (int index = 0; index < Catagory.Count; index++)
             {
-                Console.WriteLine(catagory[index]);
+                Console.WriteLine(Catagory[index]);
             }
 
             Console.WriteLine(" ");
 
             //Store input
-            int deviceCatagory = CheckInt(1, catagory.Count);
+            int deviceCatagory = CheckInt(1, Catagory.Count);
             //Stop collecting information
 
             //Check if user gets the discount and calculate the summary
@@ -69,7 +69,7 @@ namespace InsuranceApp_L1
             }
 
             //Show the catagory
-            Console.WriteLine($"Catagory: {catagory[deviceCatagory-1]}");
+            Console.WriteLine($"Catagory: {Catagory[deviceCatagory-1]}");
         }
         static string CheckProceed()
         {
